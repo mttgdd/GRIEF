@@ -17,9 +17,9 @@ LDFLAGS :=  grief/grief.cpp -Llib -Wl,
 
 # handle unix/apple builds
 ifeq ($(MACOS), no)
-	LDFLAGS += -rpath='$$ORIGIN/lib'
+	LDFLAGS := ${LDFLAGS}-rpath='$$ORIGIN/lib'
 endif
-LDFLAGS += -g `pkg-config opencv --libs`
+LDFLAGS := ${LDFLAGS} -g `pkg-config opencv --libs`
 
 # OpenCV
 #CFLAGS += `pkg-config opencv --cflags`
