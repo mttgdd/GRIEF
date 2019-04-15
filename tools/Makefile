@@ -1,5 +1,10 @@
 CC=g++
 
+# compile for unix by default
+ifndef MACOS
+	MACOS=no
+endif
+
 SOURCES=$(TARGET).cpp 
 
 OBJECTS=$(SOURCES:.cpp=.o)
@@ -8,7 +13,13 @@ EXECUTABLE=$(TARGET)
 
 #CFLAGS := -Wall -g -O3 -Wfatal-errors -mssse3 -msse2 -march=native
 CFLAGS := -ggdb 
-LDFLAGS :=  grief/grief.cpp -Llib -Wl,-rpath='$$ORIGIN/lib' -g `pkg-config opencv --libs` 
+LDFLAGS :=  grief/grief.cpp -Llib -Wl,
+
+# handle unix/apple builds
+ifeq ($(MACOS), no)
+	LDFLAGS += -rpath='$$ORIGIN/lib'
+endif
+LDFLAGS += -g `pkg-config opencv --libs`
 
 # OpenCV
 #CFLAGS += `pkg-config opencv --cflags`
