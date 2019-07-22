@@ -35,6 +35,7 @@ The datasets we used for evaluation are available for download at my [google dri
 ### Testing the main program 
 
 1. Go to <i>tools</i> and compile the <i>match_all</i> utilily: <b>cd tools;make;cd ..</b>,
+(Note that if you are compiling on MacOS, you should do ```make MACOS=yes```)
 1. Run <b>./tools/match_all DETECTOR DESCRIPTOR DATASET</b> to perform the evaluation of a single detector/descriptor combination (e.g. <b>./tools/match_all star brief GRIEF-dataset/michigan</b>),
 1. After the tests finishes, have a look in the <i>dataset/results/</i> directory for a <i>detector_descriptor.histogram</i> file (e.g. <i>GRIEF-datasets/michigan/results/up-surf_brief.histogram</i>),
 1. Run the benchmark on the provided dataset: <b>./scripts/match_all.sh DATASET</b>.
