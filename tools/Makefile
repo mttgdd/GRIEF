@@ -5,11 +5,6 @@ ifndef MACOS
 	MACOS=no
 endif
 
-# compile with cv non-free modules by default
-ifndef BUILD_WITH_OPENCV_NONFREE
-    BUILD_WITH_OPENCV_NONFREE=yes
-endif
-
 SOURCES=$(TARGET).cpp 
 
 OBJECTS=$(SOURCES:.cpp=.o)
@@ -28,10 +23,6 @@ LDFLAGS := ${LDFLAGS} -g `pkg-config opencv --libs`
 
 # OpenCV
 #CFLAGS += `pkg-config opencv --cflags`
-# non-free module support
-ifeq ($(BUILD_WITH_OPENCV_NONFREE), yes)
-    CFLAGS := ${CFLAGS}-DBUILD_WITH_OPENCV_NONFREE
-endif
 
 all: match_all evolve_grief annotate
 

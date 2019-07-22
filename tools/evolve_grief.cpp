@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
-#ifdef BUILD_WITH_OPENCV_NONFREE
 #include <opencv2/nonfree/features2d.hpp>
-#endif
 #include <stdio.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <fstream>

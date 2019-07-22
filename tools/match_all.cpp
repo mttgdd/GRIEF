@@ -3,9 +3,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/features2d/features2d.hpp>
-#ifdef BUILD_WITH_OPENCV_NONFREE
 #include <opencv2/nonfree/features2d.hpp>
-#endif
 #include <stdio.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <fstream>
@@ -298,10 +296,8 @@ void initializeDetector(char *nameI)
 	if (strncmp("norm-",name,5)==0)	{upright = false;strcpy(name,&nameI[5]);}
 
 	/*detectors*/
-#ifdef BUILD_WITH_OPENCV_NONFREE
-    if (strcmp("sift",  name)==0)  	detector = new SIFT(0,3,0.0,10,1.6);
-    if (strcmp("surf",  name)==0)  	detector = new SURF(0);
-#endif
+	if (strcmp("sift",  name)==0)  	detector = new SIFT(0,3,0.0,10,1.6);
+	if (strcmp("surf",  name)==0)  	detector = new SURF(0);
 	if (strcmp("star",  name)==0)  	detector = new StarFeatureDetector(45,0,10,8,5);
 	if (strcmp("brisk", name)==0) 	detector = new BRISK(0,4);
 	if (strcmp("orb",   name)==0) 	detector = new OrbFeatureDetector(maxFeatures,1.2f,8,31,0,2,0,31); 
@@ -321,10 +317,8 @@ void initializeDescriptor(char *nameI)
 	/*modifiers*/
 	if (strncmp("root-",name,5)==0){normalizeSift= true;strcpy(name,&nameI[5]);}
 	/*descriptors*/
-#ifdef BUILD_WITH_OPENCV_NONFREE
 	if (strcmp("sift",  name)==0)  	{norm2=true;descriptor = new SIFT(0,3,0.0,10,1.6);}
 	if (strcmp("surf",  name)==0)   {norm2=true;descriptor = new SURF(0);}
-#endif
 	if (strcmp("brisk", name)==0)   {norm2=false;descriptor = new BRISK(0,4);}
 	if (strcmp("brief", name)==0)   {norm2=false;descriptor = new BriefDescriptorExtractor(32);}
 	if (strcmp("grief", name)==0)   {norm2=false;descriptor = new GriefDescriptorExtractor(32);}
